@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--       load the properties file: sport.properties-->
+       <context:property-placeholder location="classpath:sport.properties"/>
+
+       <bean id="fortuneService" class="com.cotiviti.com.spring.udemy.springbasic.Fortune"></bean>
+       <bean id="myCoach" class="com.cotiviti.com.spring.udemy.springbasic.BaseballCoach">
+              <constructor-arg ref="fortuneService"></constructor-arg>
+       </bean>
+       <bean id="myCricketCoach" class="com.cotiviti.com.spring.udemy.springbasic.CricketCoach">
+              <property name="fortune" ref="fortuneService"/>
+              <property name="emailAddress" value="${foo.email}"/>
+              <property name="team" value="${foo.team}"/>
+       </bean>
+</beans>
